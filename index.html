@@ -562,7 +562,42 @@
 
         // Escuta mudanças na URL (hash)
         window.addEventListener('hashchange', handleNavigation);
-        window.addEventListener('load', handleNavigation); // Executa ao carregar a página
+        
+        // --- FORÇAR INÍCIO NO TOPO AO RECARREGAR ---
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
+        window.addEventListener('load', () => {
+            // Se estiver na aba de instalação, mantém. Caso contrário, volta para o início.
+            if (window.location.hash !== '#instalacao') {
+                // Remove o hash da URL para garantir que o site volte para a "Capa" se não for instalação
+                if (window.location.hash) {
+                    history.replaceState(null, null, window.location.pathname);
+                }
+            }
+            
+            // Força o scroll para o topo absoluto
+            window.scrollTo(0, 0);
+            
+            // Executa a navegação (que agora respeitará o hash #instalacao se ele existir)
+            handleNavigation();
+            initAnimations();
+            
+            // Iniciar efeito de digitação se o elemento existir
+            const typeTextElement = document.getElementById('typewriter');
+            if(typeTextElement) typeWriter();
+
+            // --- FECHAR MENU MOBILE AO CLICAR ---
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        });
 
         // --- ANIMATIONS ON SCROLL ---
         const observerOptions = {
