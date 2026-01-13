@@ -589,6 +589,16 @@
             // Iniciar efeito de digitação se o elemento existir
             const typeTextElement = document.getElementById('typewriter');
             if(typeTextElement) typeWriter();
+
+            // --- FECHAR MENU MOBILE AO CLICAR ---
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
         });
 
         // --- TYPEWRITER EFFECT ---
