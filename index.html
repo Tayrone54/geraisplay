@@ -363,7 +363,6 @@
                         </div>
                         <ul class="space-y-4 mb-8 flex-1">
                             <li class="flex items-center gap-3 text-sm text-white font-medium"><svg class="w-5 h-5 text-brand-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 1 Tela Simultânea</li>
-                            <li class="flex items-center gap-3 text-sm text-white font-medium"><svg class="w-5 h-5 text-brand-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 1 Tela Simultânea</li>
                             <li class="flex items-center gap-3 text-sm text-white font-medium"><svg class="w-5 h-5 text-brand-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Canais SD/HD/FHD/4K</li>
                             <li class="flex items-center gap-3 text-sm text-white font-medium"><svg class="w-5 h-5 text-brand-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Filmes e Séries</li>
                             <li class="flex items-center gap-3 text-sm text-white font-medium"><svg class="w-5 h-5 text-brand-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> +80.000 Conteúdos</li>
@@ -528,14 +527,20 @@
 
     <!-- Footer -->
     <footer class="bg-dark-950 py-12 border-t border-dark-800">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center justify-center gap-6">
             <div class="flex items-center gap-2">
                 <!-- Logo no Footer -->
-                <img src="logo.png" alt="GERAIS PLAY" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity">
+                <img src="logo.png" alt="GERAIS PLAY" class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity">
             </div>
-            <div class="text-gray-500 text-sm text-center md:text-right font-medium">
+            <!-- Ícones de Redes Sociais -->
+            <div class="flex gap-4">
+                <a href="https://instagram.com" target="_blank" class="text-gray-400 hover:text-brand-500 transition-colors transform hover:scale-110">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+            </div>
+            <div class="text-gray-500 text-sm text-center font-medium">
                 <p>&copy; 2026 GERAIS PLAY. Todos os direitos reservados.</p>
-                <p class="mt-1">Dúvidas? <a href="#" class="text-brand-500 hover:underline">Fale conosco</a></p>
+                <p class="mt-1">Dúvidas? <a href="https://wa.me/5531920047253" target="_blank" class="text-brand-500 hover:underline">Fale conosco</a></p>
             </div>
         </div>
     </footer>
@@ -567,18 +572,18 @@
             const installPage = document.getElementById('installation-page');
             
             // Oculta todas as páginas primeiro
-            homePage.classList.add('hidden');
-            installPage.classList.add('hidden');
+            if (homePage) homePage.classList.add('hidden');
+            if (installPage) installPage.classList.add('hidden');
 
-            const homeSections = ['#inicio', '#beneficios', '#dispositivos', '#ai-guru', '#planos', '#faq'];
+            const homeSections = ['#inicio', '#beneficios', '#dispositivos', '#planos', '#faq'];
             
             if (hash === '#instalacao') {
                 // Modo Página de Instalação
-                installPage.classList.remove('hidden');
+                if (installPage) installPage.classList.remove('hidden');
                 window.scrollTo(0, 0); // Rola para o topo ao trocar de página
             } else {
                 // Modo Página Inicial (Padrão)
-                homePage.classList.remove('hidden');
+                if (homePage) homePage.classList.remove('hidden');
                 
                 // Se for uma seção específica, tenta rolar suavemente até ela
                 if (homeSections.includes(hash)) {
@@ -696,68 +701,9 @@
         }
 
 
-        // --- GEMINI AI INTEGRATION (IA GURU) ---
+        // --- GEMINI AI INTEGRATION (SUPORTE TÉCNICO) ---
         const apiKey = ""; // A chave é injetada automaticamente pelo ambiente
 
-        async function askGemini() {
-            const input = document.getElementById('ai-input').value;
-            if (!input.trim()) return;
-
-            const resultDiv = document.getElementById('ai-result');
-            const contentDiv = document.getElementById('ai-content');
-            const loadingDiv = document.getElementById('ai-loading');
-
-            // UI Reset
-            resultDiv.classList.add('hidden');
-            loadingDiv.classList.remove('hidden');
-
-            try {
-                // Chamada à API Gemini
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        contents: [{
-                            parts: [{
-                                text: `Você é um assistente especialista em filmes e séries chamado "Guru do Gerais Play".
-                                O usuário disse: "${input}".
-                                Aja de forma divertida e empolgante.
-                                Sua missão: Sugira 3 títulos (Filmes ou Séries) que combinem com o pedido do usuário e que geralmente estão em plataformas de streaming (Netflix, Prime, HBO, etc), pois o Gerais Play agrega tudo.
-                                
-                                Formate sua resposta assim para cada item:
-                                🎬 **Título do Filme/Série**
-                                Uma mini sinopse de 1 linha super curiosa.
-                                
-                                No final, dê uma mensagem curta dizendo: "Assista a tudo isso em 4K assinando o Gerais Play agora mesmo!"`
-                            }]
-                        }]
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error('Erro na resposta da API');
-                }
-
-                const data = await response.json();
-                const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "Desculpe, minha bola de cristal está embaçada. Tente novamente!";
-
-                // Formatação simples: Transforma **texto** em negrito com cor da marca
-                const formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-brand-400">$1</strong>');
-
-                contentDiv.innerHTML = formattedText;
-                loadingDiv.classList.add('hidden');
-                resultDiv.classList.remove('hidden');
-
-            } catch (error) {
-                console.error('Erro:', error);
-                loadingDiv.classList.add('hidden');
-                alert('Ops! O Guru está descansando um pouco. Tente novamente em alguns segundos.');
-            }
-        }
-
-        // --- GEMINI AI INTEGRATION (SUPORTE TÉCNICO) ---
         async function askSupportAI() {
             const input = document.getElementById('support-input').value;
             if (!input.trim()) return;
