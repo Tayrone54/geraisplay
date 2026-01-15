@@ -671,7 +671,7 @@
         let phraseIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
-        let typeSpeed = 100;
+        let typeSpeed = 500; // Velocidade inicial mais lenta
 
         function typeWriter() {
             if (!typeTextElement) return;
@@ -681,16 +681,16 @@
             if (isDeleting) {
                 typeTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
                 charIndex--;
-                typeSpeed = 50; 
+                typeSpeed = 75; // Apagar um pouco mais lento para suavizar
             } else {
                 typeTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
                 charIndex++;
-                typeSpeed = 100; 
+                typeSpeed = 150; // Escrever mais devagar (antes era 100)
             }
 
             if (!isDeleting && charIndex === currentPhrase.length) {
                 isDeleting = true;
-                typeSpeed = 2000; 
+                typeSpeed = 3500; // Pausa maior para leitura (antes era 2000)
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 phraseIndex = (phraseIndex + 1) % phrases.length;
