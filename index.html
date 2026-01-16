@@ -85,7 +85,18 @@
             text-shadow: 0 0 30px rgba(210, 31, 60, 0.4);
         }
 
-        /* --- ANIMAÇÕES DE SCROLL --- */
+        /* Efeito Shimmer para IA (Vermelho) */
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .ai-shimmer {
+            background: linear-gradient(90deg, rgba(210,31,60,0) 0%, rgba(210,31,60,0.1) 50%, rgba(210,31,60,0) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+
+        /* --- ANIMAÇÕES DE SCROLL (REVEAL) --- */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -107,6 +118,58 @@
         @keyframes blink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
+        }
+        
+        /* Estilos para os Cards de Novidades */
+        .movie-card:hover .movie-overlay {
+            opacity: 1;
+        }
+        .movie-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Animação Marquee (Rolagem Infinita de Logos) com Pausa no Hover */
+        .marquee-wrapper {
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            overflow: hidden;
+            width: 100%;
+            padding: 20px 0; /* Espaço vertical */
+        }
+        .marquee-content {
+            display: flex;
+            gap: 3rem; /* Espaço entre as logos */
+            animation: marquee 40s linear infinite;
+            width: max-content;
+            padding-left: 2rem;
+            align-items: center;
+        }
+        /* Pausa a animação ao passar o rato */
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+        .marquee-content img {
+            height: 2.8rem; /* Tamanho ajustado */
+            width: auto;
+            opacity: 1;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .marquee-content img:hover {
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
+        }
+        /* Classe para inverter logos pretas para branco (Apenas para logos 100% pretas) */
+        .invert-on-dark {
+            filter: brightness(0) invert(1);
+        }
+        /* Classe para logos coloridas com texto escuro (Prime, Paramount, etc) */
+        .shadow-on-dark {
+            filter: drop-shadow(0 0 2px rgba(255,255,255,0.4));
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
     </style>
 </head>
@@ -144,6 +207,11 @@
                 
                 <!-- Menu Direito (Desktop) -->
                 <div class="hidden md:flex items-center justify-end flex-1 gap-6">
+                    <!-- Novo Item no Menu -->
+                    <a href="#ai-guru" class="relative group py-2 text-sm font-black text-brand-400 hover:text-white transition-colors flex items-center gap-1 uppercase tracking-wide">
+                        IA Guru ✨
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-brand-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left shadow-[0_0_8px_rgba(210,31,60,0.8)]"></span>
+                    </a>
                     <a href="#planos" class="relative group py-2 text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-wide">
                         Planos
                         <span class="absolute bottom-0 left-0 w-full h-0.5 bg-brand-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left shadow-[0_0_8px_rgba(210,31,60,0.8)]"></span>
@@ -175,6 +243,7 @@
                 <a href="#inicio" class="block px-3 py-3 rounded-xl text-base font-bold text-white hover:bg-dark-800 border border-transparent hover:border-brand-500/20">Início</a>
                 <a href="#beneficios" class="block px-3 py-3 rounded-xl text-base font-bold text-gray-300 hover:bg-dark-800 hover:text-brand-400 border border-transparent hover:border-brand-500/20">Vantagens</a>
                 <a href="#instalacao" class="block px-3 py-3 rounded-xl text-base font-bold text-gray-300 hover:bg-dark-800 hover:text-brand-400 border border-transparent hover:border-brand-500/20">Instalação</a>
+                <a href="#ai-guru" class="block px-3 py-3 rounded-xl text-base font-black text-brand-400 hover:bg-dark-800 hover:text-white border border-transparent hover:border-brand-500/20">IA Guru ✨</a>
                 <a href="#planos" class="block px-3 py-3 rounded-xl text-base font-bold text-gray-300 hover:bg-dark-800 hover:text-brand-400 border border-transparent hover:border-brand-500/20">Planos</a>
                 <a href="#faq" class="block px-3 py-3 rounded-xl text-base font-bold text-gray-300 hover:bg-dark-800 hover:text-brand-400 border border-transparent hover:border-brand-500/20">Dúvidas</a>
                 <a href="https://wa.me/5531920047253" class="block mt-4 text-center bg-brand-600 text-white px-4 py-4 rounded-xl font-bold shadow-lg shadow-brand-600/20">Solicitar Teste Grátis</a>
@@ -205,7 +274,7 @@
                     Teste agora mesmo e comprove a qualidade GERAIS PLAY.
                 </p>
                 
-                <div class="reveal delay-300 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                <div class="reveal delay-300 flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-12">
                     <a href="https://wa.me/5531920047253?text=Quero+um+teste+grátis" target="_blank" class="px-8 py-4 bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-white rounded-xl font-bold text-lg transition-all shadow-xl shadow-brand-600/30 flex items-center justify-center gap-2 hover:-translate-y-1">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
                         Quero Testar Grátis
@@ -214,9 +283,63 @@
                         Ver Planos
                     </a>
                 </div>
+
+                <!-- CARROSSEL DE LOGOS (MARQUEE) -->
+                <div class="reveal w-full max-w-6xl mx-auto mb-16 px-4 overflow-hidden">
+                    <p class="text-gray-500 text-[10px] uppercase tracking-[0.3em] mb-8 font-bold opacity-60">Plataformas Disponíveis</p>
+                    <div class="marquee-wrapper">
+                        <div class="marquee-content">
+                            <!-- Bloco 1 (PNGs) -->
+                            <img src="netflix.png" alt="Netflix" class="shadow-on-dark">
+                            
+                            <!-- Prime Video -->
+                            <img src="primevideo.png" alt="Prime Video" class="shadow-on-dark">
+                            
+                            <!-- Disney+ (Removido invert, adicionado sombra) -->
+                            <img src="disney.png" alt="Disney+" class="shadow-on-dark">
+                            
+                            <!-- HBO Max (Removido invert, adicionado sombra) -->
+                            <img src="max.png" alt="Max" class="shadow-on-dark">
+                            
+                            <!-- Globoplay -->
+                            <img src="globoplay.png" alt="Globoplay" class="shadow-on-dark">
+                            
+                            <!-- Apple TV+ (Removido invert, adicionado sombra) -->
+                            <img src="appletv.png" alt="Apple TV+" class="shadow-on-dark">
+                            
+                            <!-- Premiere (Removido invert, adicionado sombra) -->
+                            <img src="premiere.png" alt="Premiere" class="shadow-on-dark">
+                            
+                            <!-- Paramount+ -->
+                            <img src="paramount.png" alt="Paramount+" class="shadow-on-dark">
+                            
+                            <!-- Star+ -->
+                            <img src="starplus.png" alt="Star+" class="shadow-on-dark">
+                            
+                            <!-- Discovery -->
+                            <img src="discovery.png" alt="Discovery" class="shadow-on-dark">
+                            
+                            <!-- UFC (Removido invert, adicionado sombra) -->
+                            <img src="ufc.png" alt="UFC" class="shadow-on-dark">
+                            
+                            <!-- Bloco 2 (Repetição para Loop Infinito - PNGs) -->
+                            <img src="netflix.png" alt="Netflix" class="shadow-on-dark">
+                            <img src="primevideo.png" alt="Prime Video" class="shadow-on-dark">
+                            <img src="disney.png" alt="Disney+" class="shadow-on-dark">
+                            <img src="max.png" alt="Max" class="shadow-on-dark">
+                            <img src="globoplay.png" alt="Globoplay" class="shadow-on-dark">
+                            <img src="appletv.png" alt="Apple TV+" class="shadow-on-dark">
+                            <img src="premiere.png" alt="Premiere" class="shadow-on-dark">
+                            <img src="paramount.png" alt="Paramount+" class="shadow-on-dark">
+                            <img src="starplus.png" alt="Star+" class="shadow-on-dark">
+                            <img src="discovery.png" alt="Discovery" class="shadow-on-dark">
+                            <img src="ufc.png" alt="UFC" class="shadow-on-dark">
+                        </div>
+                    </div>
+                </div>
                 
                 <!-- Stats -->
-                <div class="reveal mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 w-full border-t border-white/5 pt-10">
+                <div class="reveal mt-4 grid grid-cols-2 md:grid-cols-4 gap-8 w-full border-t border-white/5 pt-10">
                     <div>
                         <p class="text-3xl font-black text-white">+50 Mil</p>
                         <p class="text-sm text-gray-400 mt-1 font-semibold">Conteúdos</p>
@@ -304,6 +427,59 @@
             </div>
         </section>
 
+        <!-- SECTION: AI Guru powered by Gemini -->
+        <section id="ai-guru" class="py-24 relative bg-dark-900 border-t border-dark-800 overflow-hidden">
+            <!-- AI Shimmer effect -->
+            <div class="absolute inset-0 pointer-events-none ai-shimmer opacity-10"></div>
+            
+            <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+                <span class="reveal inline-flex items-center gap-2 py-1 px-3 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-bold tracking-wide uppercase mb-6">
+                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6a1 1 0 0 0-1 1v5a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V7a1 1 0 0 0-1-1z"/></svg>
+                    Powered by Google Gemini ✨
+                </span>
+                <h2 class="reveal delay-100 text-3xl md:text-5xl font-black text-white mb-6">Guru de <span class="text-gradient-red">Streaming IA</span></h2>
+                <p class="reveal delay-200 text-gray-400 text-lg mb-10 max-w-2xl mx-auto font-medium">Não sabe o que assistir hoje? Conte para nossa Inteligência Artificial como você está se sentindo e receba indicações perfeitas do nosso catálogo.</p>
+
+                <div class="reveal delay-300 bg-dark-950 p-1 rounded-2xl border border-dark-700 shadow-2xl relative group">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-brand-600 to-red-600 rounded-2xl opacity-20 group-hover:opacity-40 transition duration-500 blur"></div>
+                    
+                    <div class="relative bg-dark-950 rounded-xl p-6 md:p-8">
+                        <textarea id="ai-input" rows="3" class="w-full bg-dark-900 text-white border border-dark-700 rounded-xl p-4 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all placeholder-gray-600 resize-none text-lg font-medium" placeholder="Ex: Estou querendo rir muito com uma comédia romântica leve..."></textarea>
+                        
+                        <div class="mt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                            <p class="text-xs text-gray-500 hidden md:block font-medium">Dica: Tente pedir por gênero, ator ou humor!</p>
+                            <button onclick="askGemini()" class="w-full md:w-auto bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-white font-bold py-3 px-8 rounded-xl transition-all transform hover:scale-105 shadow-lg flex items-center justify-center gap-2">
+                                <span>Pedir Sugestão Mágica</span>
+                                <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
+                            </button>
+                        </div>
+
+                        <!-- Resultado -->
+                        <div id="ai-result" class="mt-8 hidden text-left bg-dark-900/50 rounded-xl p-6 border border-brand-500/20 animate-[fadeIn_0.5s_ease-out]">
+                            <div class="flex items-center gap-3 mb-4 border-b border-white/5 pb-4">
+                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-brand-500 to-red-600 flex items-center justify-center text-white shadow-lg">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-lg">Sugestões do Guru</h4>
+                                    <p class="text-xs text-brand-400">Personalizado para você</p>
+                                </div>
+                            </div>
+                            <div id="ai-content" class="text-gray-300 leading-relaxed space-y-4 whitespace-pre-line text-base font-medium"></div>
+                        </div>
+                        
+                        <!-- Loading State -->
+                         <div id="ai-loading" class="mt-8 hidden">
+                            <div class="flex flex-col items-center justify-center gap-3 text-brand-400 py-4">
+                                <svg class="animate-spin h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                                <span class="animate-pulse font-medium">Consultando nossa biblioteca de sucessos...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Planos -->
         <section id="planos" class="py-24 relative bg-dark-950">
             <!-- Background Glow -->
@@ -313,6 +489,32 @@
                 <div class="text-center mb-16">
                     <h2 class="reveal text-brand-500 font-bold tracking-wide uppercase text-sm mb-2">Preços acessíveis</h2>
                     <h3 class="reveal delay-100 text-3xl md:text-4xl font-black text-white">Escolha o plano ideal para você</h3>
+                </div>
+
+                <!-- NEW AI FEATURE: PLAN CALCULATOR -->
+                <div class="reveal delay-200 bg-dark-900 rounded-2xl p-6 mb-12 border border-dark-700 max-w-4xl mx-auto shadow-xl">
+                    <div class="flex flex-col md:flex-row items-center gap-6">
+                        <div class="flex-1 text-center md:text-left">
+                            <h4 class="text-xl font-bold text-white flex items-center gap-2 justify-center md:justify-start">
+                                <svg class="w-6 h-6 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                                Qual plano é perfeito para mim?
+                            </h4>
+                            <p class="text-gray-400 text-sm mt-2 font-medium">Conte para nossa IA como você usa streaming (ex: "quero economizar", "só para testar", "tenho 2 TVs") e descubra a melhor opção!</p>
+                        </div>
+                        <div class="flex-1 w-full relative">
+                            <div class="flex gap-2">
+                                <input type="text" id="plan-input" class="w-full bg-dark-950 text-white border border-dark-700 rounded-lg p-3 text-sm focus:border-brand-500 focus:outline-none placeholder-gray-600 font-medium" placeholder="Ex: Quero o melhor custo-benefício para 6 meses...">
+                                <button onclick="askPlanAI()" class="bg-brand-600 hover:bg-brand-500 text-white px-4 py-2 rounded-lg transition-colors">
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                                </button>
+                            </div>
+                            <!-- Resultado Calculadora -->
+                            <div id="plan-result" class="hidden absolute top-full left-0 w-full mt-2 bg-dark-800 border border-brand-500/30 rounded-lg p-4 z-20 shadow-2xl">
+                                <p id="plan-content" class="text-gray-200 text-sm leading-relaxed font-medium"></p>
+                                <button onclick="document.getElementById('plan-result').classList.add('hidden')" class="absolute top-2 right-2 text-gray-500 hover:text-white">&times;</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -362,6 +564,7 @@
                             <span class="text-gray-500">/6 meses</span>
                         </div>
                         <ul class="space-y-4 mb-8 flex-1">
+                            <li class="flex items-center gap-3 text-sm text-white font-medium"><svg class="w-5 h-5 text-brand-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 1 Tela Simultânea</li>
                             <li class="flex items-center gap-3 text-sm text-white font-medium"><svg class="w-5 h-5 text-brand-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 1 Tela Simultânea</li>
                             <li class="flex items-center gap-3 text-sm text-white font-medium"><svg class="w-5 h-5 text-brand-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Canais SD/HD/FHD/4K</li>
                             <li class="flex items-center gap-3 text-sm text-white font-medium"><svg class="w-5 h-5 text-brand-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Filmes e Séries</li>
@@ -575,7 +778,7 @@
             if (homePage) homePage.classList.add('hidden');
             if (installPage) installPage.classList.add('hidden');
 
-            const homeSections = ['#inicio', '#beneficios', '#dispositivos', '#planos', '#faq'];
+            const homeSections = ['#inicio', '#beneficios', '#dispositivos', '#ai-guru', '#planos', '#faq'];
             
             if (hash === '#instalacao') {
                 // Modo Página de Instalação
@@ -625,13 +828,15 @@
 
             // --- FECHAR MENU MOBILE AO CLICAR ---
             const mobileMenu = document.getElementById('mobile-menu');
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
+            // FIX: Check if element exists before accessing properties
+            if (mobileMenu) {
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                    });
                 });
-            });
+            }
         });
 
         // --- ANIMATIONS ON SCROLL ---
@@ -701,9 +906,68 @@
         }
 
 
-        // --- GEMINI AI INTEGRATION (SUPORTE TÉCNICO) ---
+        // --- GEMINI AI INTEGRATION (IA GURU) ---
         const apiKey = ""; // A chave é injetada automaticamente pelo ambiente
 
+        async function askGemini() {
+            const input = document.getElementById('ai-input').value;
+            if (!input.trim()) return;
+
+            const resultDiv = document.getElementById('ai-result');
+            const contentDiv = document.getElementById('ai-content');
+            const loadingDiv = document.getElementById('ai-loading');
+
+            // UI Reset
+            resultDiv.classList.add('hidden');
+            loadingDiv.classList.remove('hidden');
+
+            try {
+                // Chamada à API Gemini
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: `Você é um assistente especialista em filmes e séries chamado "Guru do Gerais Play".
+                                O usuário disse: "${input}".
+                                Aja de forma divertida e empolgante.
+                                Sua missão: Sugira 3 títulos (Filmes ou Séries) que combinem com o pedido do usuário e que geralmente estão em plataformas de streaming (Netflix, Prime, HBO, etc), pois o Gerais Play agrega tudo.
+                                
+                                Formate sua resposta assim para cada item:
+                                🎬 **Título do Filme/Série**
+                                Uma mini sinopse de 1 linha super curiosa.
+                                
+                                No final, dê uma mensagem curta dizendo: "Assista a tudo isso em 4K assinando o Gerais Play agora mesmo!"`
+                            }]
+                        }]
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erro na resposta da API');
+                }
+
+                const data = await response.json();
+                const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "Desculpe, minha bola de cristal está embaçada. Tente novamente!";
+
+                // Formatação simples: Transforma **texto** em negrito com cor da marca
+                const formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-brand-400">$1</strong>');
+
+                contentDiv.innerHTML = formattedText;
+                loadingDiv.classList.add('hidden');
+                resultDiv.classList.remove('hidden');
+
+            } catch (error) {
+                console.error('Erro:', error);
+                loadingDiv.classList.add('hidden');
+                alert('Ops! O Guru está descansando um pouco. Tente novamente em alguns segundos.');
+            }
+        }
+
+        // --- GEMINI AI INTEGRATION (SUPORTE TÉCNICO) ---
         async function askSupportAI() {
             const input = document.getElementById('support-input').value;
             if (!input.trim()) return;
@@ -758,6 +1022,54 @@
                 console.error('Erro:', error);
                 loadingDiv.classList.add('hidden');
                 alert('Erro ao conectar com o suporte inteligente. Tente novamente.');
+            }
+        }
+
+        // --- GEMINI AI INTEGRATION (PLAN CALCULATOR) ---
+        async function askPlanAI() {
+            const input = document.getElementById('plan-input').value;
+            if (!input.trim()) return;
+
+            const resultDiv = document.getElementById('plan-result');
+            const contentDiv = document.getElementById('plan-content');
+            
+            // Show loading state implicitly by clearing text
+            contentDiv.innerHTML = '<span class="animate-pulse text-brand-400">Calculando o melhor plano...</span>';
+            resultDiv.classList.remove('hidden');
+
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: `Você é um consultor de vendas experiente do Gerais Play.
+                                O usuário disse: "${input}".
+                                
+                                Nossos planos são:
+                                1. Mensal: R$ 21,90 (Flexível, bom para testar)
+                                2. Trimestral: R$ 54,90 (Mais vendido, economiza R$ 10,80)
+                                3. Semestral: R$ 129,90 (Melhor valor a longo prazo)
+                                *Todos os planos são para 1 tela simultânea. Se o usuário falar em várias telas, sugira comprar mais logins ou focar na economia.
+                                
+                                Sua missão: Recomendar UMA opção específica baseada no que o usuário disse. Seja persuasivo, destaque a economia e termine incentivando a assinatura.
+                                Resposta curta (max 2 frases).`
+                            }]
+                        }]
+                    })
+                });
+
+                if (!response.ok) throw new Error('Erro API');
+
+                const data = await response.json();
+                const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "Recomendamos o plano Trimestral para começar!";
+                
+                contentDiv.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-brand-400">$1</strong>');
+
+            } catch (error) {
+                console.error(error);
+                contentDiv.innerHTML = "Não consegui calcular agora. Mas o plano Trimestral é o favorito da galera!";
             }
         }
     </script>
