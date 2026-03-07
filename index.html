@@ -8,14 +8,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #f59e0b;
-            --dark: #0f0f0f;
-            --surface: #1a1a1a;
+            --beer-yellow: #f59e0b;
+            --dark-text: #0f0f0f;
+            --card-bg: #ffffff;
         }
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: var(--dark);
-            color: #e5e5e5;
+            background-color: var(--beer-yellow);
+            color: var(--dark-text);
             scroll-behavior: smooth;
         }
         h1, h2, h3, .font-oswald {
@@ -24,554 +24,380 @@
             letter-spacing: 0.05em;
         }
         .item-card {
-            background: linear-gradient(145deg, #1a1a1a, #141414);
+            background: var(--card-bg);
             transition: transform 0.2s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .item-card:hover {
+            transform: translateY(-4px);
         }
         .category-link.active {
-            color: var(--primary);
-            border-bottom: 2px solid var(--primary);
+            color: #000;
+            border-bottom: 3px solid #000;
+            font-weight: 800;
         }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
         .price-tag {
-            background-color: rgba(245, 158, 11, 0.1);
-            color: var(--primary);
+            background-color: var(--dark-text);
+            color: #fff;
             padding: 4px 12px;
             border-radius: 99px;
             font-weight: 700;
-            border: 1px solid rgba(245, 158, 11, 0.2);
+            white-space: nowrap;
         }
         
+        .img-container {
+            height: 180px;
+            overflow: hidden;
+            background-color: #f3f4f6;
+        }
         .img-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            background-color: #222;
         }
 
         .karaoke-btn {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: #000;
+            color: #fff;
+            transition: all 0.3s ease;
         }
         .karaoke-btn:hover {
+            background-color: #222;
             transform: scale(1.02);
-            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.2);
         }
     </style>
 </head>
 <body class="pb-12">
 
-    <!-- Header -->
-    <header class="bg-black/95 sticky top-0 z-50 border-b border-zinc-800">
+    <!-- Header (Removido sticky para que suma ao rolar) -->
+    <header class="bg-amber-500 border-b border-black/10">
         <div class="container mx-auto px-4 py-5 text-center">
-            <h1 class="text-2xl md:text-3xl text-amber-500 leading-none mb-1">Huno's Bier</h1>
-            <p class="text-[10px] text-zinc-500 uppercase tracking-[0.3em]">Artesanal & Grill</p>
+            <h1 class="text-2xl md:text-3xl text-black font-bold leading-none mb-1">Huno's Bier</h1>
+            <p class="text-[10px] text-black/70 uppercase tracking-[0.3em]">Artesanal & Grill</p>
         </div>
     </header>
 
     <!-- Banner -->
-    <section class="relative h-40 md:h-56 overflow-hidden flex items-center justify-center">
-        <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: url('https://images.unsplash.com/photo-1550507992-eb63ffee0847?auto=format&fit=crop&q=80&w=1200');"></div>
+    <section class="relative h-40 md:h-56 overflow-hidden flex items-center justify-center bg-amber-500 border-b border-black/5">
         <div class="relative text-center px-4">
-            <p class="text-amber-500 text-sm font-bold mb-1">BEM-VINDO</p>
-            <h2 class="text-3xl md:text-4xl text-white">Nosso Cardápio</h2>
+            <p class="text-black/60 text-sm font-bold mb-1">BEM-VINDO</p>
+            <h2 class="text-3xl md:text-5xl text-black font-black">NOSSO CARDÁPIO</h2>
         </div>
     </section>
 
-    <!-- Karaoke Links -->
+    <!-- Karaoke -->
     <section class="container mx-auto px-4 py-8 max-w-2xl">
-        <div class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-3xl text-center">
+        <div class="bg-black/5 backdrop-blur-sm border border-black/10 p-6 rounded-3xl text-center">
             <div class="flex items-center justify-center gap-2 mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
                 </svg>
-                <h3 class="text-lg font-bold text-white uppercase tracking-wider">Karaokê</h3>
+                <h3 class="text-lg font-bold text-black uppercase tracking-wider">Lista de Músicas</h3>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <a href="https://drive.google.com/file/d/1I5l0g8q0B4vgmbmiBWENOc16Z1mNCHrQ/view" target="_blank" class="karaoke-btn flex items-center justify-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-4 px-6 rounded-2xl border border-zinc-700 hover:border-amber-500 transition">
+                <a href="https://drive.google.com/file/d/1I5l0g8q0B4vgmbmiBWENOc16Z1mNCHrQ/view" target="_blank" class="karaoke-btn flex items-center justify-center font-bold py-4 px-6 rounded-2xl shadow-md">
                     <span>NACIONAIS</span>
                 </a>
-                <a href="https://drive.google.com/file/d/1jJpCYNP5XWBrI4BKcd-f6zHJYlDcSUtD/view" target="_blank" class="karaoke-btn flex items-center justify-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-4 px-6 rounded-2xl border border-zinc-700 hover:border-amber-500 transition">
+                <a href="https://drive.google.com/file/d/1jJpCYNP5XWBrI4BKcd-f6zHJYlDcSUtD/view" target="_blank" class="karaoke-btn flex items-center justify-center font-bold py-4 px-6 rounded-2xl shadow-md">
                     <span>INTERNACIONAIS</span>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Navegação -->
-    <nav class="bg-zinc-900 overflow-x-auto no-scrollbar sticky top-[73px] z-40 border-b border-zinc-800 shadow-xl">
+    <!-- Navegação Unificada (Sticky ajustado para o topo da tela) -->
+    <nav class="bg-amber-500 overflow-x-auto no-scrollbar sticky top-0 z-40 border-b border-black/10 shadow-sm">
         <div class="container mx-auto px-4 flex justify-center gap-6 py-4 min-w-max">
-            <a href="#burgers" class="category-link active font-bold text-sm">BURGERS</a>
-            <a href="#porcoes" class="category-link text-zinc-400 hover:text-amber-500 transition text-sm">PORÇÕES</a>
-            <a href="#petiscos" class="category-link text-zinc-400 hover:text-amber-500 transition text-sm">PETISCOS</a>
-            <a href="#bebidas" class="category-link text-zinc-400 hover:text-amber-500 transition text-sm">BEBIDAS</a>
-            <a href="#sortidos" class="category-link text-zinc-400 hover:text-amber-500 transition text-sm">SORTIDOS</a>
+            <a href="#burgers" class="category-link active text-sm font-bold">BURGERS</a>
+            <a href="#porcoes" class="category-link text-black/70 text-sm font-medium">PORÇÕES</a>
+            <a href="#petiscos" class="category-link text-black/70 text-sm font-medium">PETISCOS</a>
+            <a href="#bebidas" class="category-link text-black/70 text-sm font-medium">BEBIDAS</a>
+            <a href="#sortidos" class="category-link text-black/70 text-sm font-medium">SORTIDOS</a>
         </div>
     </nav>
 
-    <main class="container mx-auto px-4 mt-6 space-y-16 max-w-6xl">
+    <main class="container mx-auto px-4 mt-8 space-y-16 max-w-6xl">
 
-        <!-- Burgers -->
-        <section id="burgers">
+        <!-- BURGERS -->
+        <section id="burgers" class="scroll-mt-20">
             <div class="text-center mb-10">
-                <h2 class="text-3xl text-amber-500 mb-2">Burgers Artesanais</h2>
-                <div class="w-16 h-1 bg-amber-500 mx-auto"></div>
+                <h2 class="text-3xl text-black font-bold mb-2">Burgers Artesanais</h2>
+                <div class="w-16 h-1 bg-black mx-auto"></div>
             </div>
-            
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Cheese -->
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-56 img-container">
-                        <img id="img-cheese" src="img/cheese.jpg" alt="[Imagem de Cheese Burger]" onerror="this.src='https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Cheese</h3>
-                            <span class="price-tag shrink-0">R$ 39,90</span>
+                <div class="item-card rounded-2xl overflow-hidden">
+                    <div class="img-container"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600" alt="[Imagem de Cheese Burger]"></div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2"><h3 class="text-lg font-bold">Cheese</h3><span class="price-tag">R$ 39,90</span></div>
+                            <p class="text-zinc-600 text-sm">Burguer artesanal de 160 gramas (Ponto vermelho), 160 gramas de queijo temperado e empanado, cebola caramelizada, maionese verde e pão brioche.</p>
                         </div>
-                        <p class="text-zinc-400 text-sm">Burguer artesanal de 160 gramas (Ponto vermelho), 160 gramas de queijo temperado e empanado, cebola caramelizada, maionese verde e pão brioche.</p>
                     </div>
                 </div>
-
-                <!-- Gorgonzola -->
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-56 img-container">
-                        <img id="img-gorgonzola" src="img/gorgonzola-style.jpg" alt="[Imagem de Burger Gorgonzola]" onerror="this.src='https://images.unsplash.com/photo-1594212691516-336eb5eb3d12?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Gorgonzola Style</h3>
-                            <span class="price-tag shrink-0">R$ 38,90</span>
+                <!-- Gorgonzola Style -->
+                <div class="item-card rounded-2xl overflow-hidden">
+                    <div class="img-container"><img src="https://images.unsplash.com/photo-1594212691516-336eb5eb3d12?w=600" alt="[Imagem de Gorgonzola Style]"></div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2"><h3 class="text-lg font-bold">Gorgonzola Style</h3><span class="price-tag">R$ 38,90</span></div>
+                            <p class="text-zinc-600 text-sm">Burguer artesanal 160 gramas (Ponto vermelho) recheado com gorgonzola, onion bacon (anel de cebola envolta no bacon), creme de queijo, alface, tomate e pão brioche.</p>
                         </div>
-                        <p class="text-zinc-400 text-sm">Burguer artesanal 160 gramas (Ponto vermelho) recheado com gorgonzola, onion bacon, creme de queijo, alface, tomate e pão brioche.</p>
                     </div>
                 </div>
-
                 <!-- Mr. Ovo -->
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-56 img-container">
-                        <img id="img-mr-ovo" src="img/mr-ovo.jpg" alt="[Imagem de Burger com Ovo]" onerror="this.src='https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Mr. Ovo</h3>
-                            <span class="price-tag shrink-0">R$ 37,90</span>
+                <div class="item-card rounded-2xl overflow-hidden">
+                    <div class="img-container"><img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=600" alt="[Imagem de Mr. Ovo]"></div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2"><h3 class="text-lg font-bold">Mr. Ovo</h3><span class="price-tag">R$ 37,90</span></div>
+                            <p class="text-zinc-600 text-sm">Burguer 160 gramas (Ponto vermelho), queijo cheddar, ovo (Ponto gema dura), bacon, alface, tomate, molho especial e pão brioche.</p>
                         </div>
-                        <p class="text-zinc-400 text-sm">Burguer 160 gramas (Ponto vermelho), queijo cheddar, ovo (Ponto gema dura), bacon, alface, tomate, molho especial e pão brioche.</p>
                     </div>
                 </div>
-
                 <!-- Original -->
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-56 img-container">
-                        <img id="img-original" src="img/original.jpg" alt="[Imagem de Burger Original]" onerror="this.src='https://images.unsplash.com/photo-1550547660-d9450f859349?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Original</h3>
-                            <span class="price-tag shrink-0">R$ 35,00</span>
+                <div class="item-card rounded-2xl overflow-hidden">
+                    <div class="img-container"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=600" alt="[Imagem de Original]"></div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2"><h3 class="text-lg font-bold">Original</h3><span class="price-tag">R$ 35,00</span></div>
+                            <p class="text-zinc-600 text-sm">Burguer 160 gramas (Ponto vermelho), queijo prato, cebola roxa, alface, tomate, maionese verde e pão brioche.</p>
                         </div>
-                        <p class="text-zinc-400 text-sm">Burguer 160 gramas (Ponto vermelho), queijo prato, cebola roxa, alface, tomate, maionese verde e pão brioche.</p>
                     </div>
                 </div>
-
                 <!-- Duplo Smash -->
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-56 img-container">
-                        <img id="img-duplo-smash" src="img/duplo-smash.jpg" alt="[Imagem de Duplo Smash]" onerror="this.src='https://images.unsplash.com/photo-1603064752734-4c48eff53d05?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Duplo Smash</h3>
-                            <span class="price-tag shrink-0">R$ 33,90</span>
+                <div class="item-card rounded-2xl overflow-hidden">
+                    <div class="img-container"><img src="https://images.unsplash.com/photo-1603064752734-4c48eff53d05?w=600" alt="[Imagem de Duplo Smash]"></div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2"><h3 class="text-lg font-bold">Duplo Smash</h3><span class="price-tag">R$ 33,90</span></div>
+                            <p class="text-zinc-600 text-sm">2 Burguers de 80 gramas amassado na chapa (Ponto bem passado), alface, queijo cheddar, molho especial, cebola roxa e pão brioche.</p>
                         </div>
-                        <p class="text-zinc-400 text-sm">2 Burguers de 80 gramas amassado na chapa (Ponto bem passado), alface, queijo cheddar, molho especial, cebola roxa e pão brioche.</p>
                     </div>
                 </div>
-
                 <!-- Patty Melt -->
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-56 img-container">
-                        <img id="img-patty-melt" src="img/patty-melt.jpg" alt="[Imagem de Patty Melt]" onerror="this.src='https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Patty Melt</h3>
-                            <span class="price-tag shrink-0">R$ 33,90</span>
+                <div class="item-card rounded-2xl overflow-hidden">
+                    <div class="img-container"><img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=600" alt="[Imagem de Patty Melt]"></div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2"><h3 class="text-lg font-bold">Patty Melt</h3><span class="price-tag">R$ 33,90</span></div>
+                            <p class="text-zinc-600 text-sm">2 Burguers de 80 gramas amassados na chapa (Ponto bem passado), creme de queijo, cebola caramelizada, bacon, ketchup e pão brioche tostado na chapa.</p>
                         </div>
-                        <p class="text-zinc-400 text-sm">2 Burguers de 80 gramas amassados na chapa (Ponto bem passado), creme de queijo, cebola caramelizada, bacon, ketchup e pão brioche tostado na chapa.</p>
                     </div>
                 </div>
-
                 <!-- Prensadinho -->
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-56 img-container">
-                        <img id="img-prensadinho" src="img/prensadinho.jpg" alt="[Imagem de Burger Prensadinho]" onerror="this.src='https://images.unsplash.com/photo-1610440042657-612c34d95e9f?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Prensadinho</h3>
-                            <span class="price-tag shrink-0">R$ 30,00</span>
+                <div class="item-card rounded-2xl overflow-hidden">
+                    <div class="img-container"><img src="https://images.unsplash.com/photo-1521305916504-4a1121188589?w=600" alt="[Imagem de Prensadinho]"></div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2"><h3 class="text-lg font-bold">Prensadinho</h3><span class="price-tag">R$ 30,00</span></div>
+                            <p class="text-zinc-600 text-sm">Burguer 80 gramas amassado na chapa (Ponto bem passado), queijo cheddar, bacon, molho especial e pão brioche.</p>
                         </div>
-                        <p class="text-zinc-400 text-sm">Burguer 80 gramas amassado na chapa (Ponto bem passado), queijo cheddar, bacon, molho especial e pão brioche.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Porções -->
-        <section id="porcoes">
+        <!-- PORÇÕES -->
+        <section id="porcoes" class="scroll-mt-20">
             <div class="text-center mb-10">
-                <h2 class="text-3xl text-amber-500 mb-2">Porções</h2>
-                <div class="w-16 h-1 bg-amber-500 mx-auto"></div>
+                <h2 class="text-3xl text-black font-bold mb-2">Porções</h2>
+                <div class="w-16 h-1 bg-black mx-auto"></div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-56 img-container">
-                        <img id="img-fritas" src="img/fritas.jpg" alt="[Imagem de Batata Frita]" onerror="this.src='https://images.unsplash.com/photo-1576107232684-1279f390859f?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Fritas</h3>
-                            <span class="price-tag shrink-0">R$ 32,00</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm">Batatas steakhouse, sequinhas e crocantes.</p>
+                <!-- Fritas -->
+                <div class="item-card rounded-2xl overflow-hidden">
+                    <div class="img-container"><img src="https://images.unsplash.com/photo-1576107232684-1279f390859f?w=600" alt="[Imagem de Fritas]"></div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2"><h3 class="text-lg font-bold">Fritas</h3><span class="price-tag">R$ 32,00</span></div>
+                        <p class="text-zinc-600 text-sm">Batatas steakhouse, sequinhas e crocantes.</p>
                     </div>
                 </div>
-                
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-56 img-container">
-                        <img id="img-fritas-cheddar" src="img/fritas-cheddar-bacon.jpg" alt="[Imagem de Batata com Cheddar]" onerror="this.src='https://images.unsplash.com/photo-1581600145464-32862106940e?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Fritas com Cheddar e Bacon</h3>
-                            <span class="price-tag shrink-0">R$ 41,90</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm">Batatas steakhouse acompanhadas de cheddar e bacon.</p>
+                <!-- Fritas Cheddar Bacon -->
+                <div class="item-card rounded-2xl overflow-hidden">
+                    <div class="img-container"><img src="https://images.unsplash.com/photo-1585109649139-366815a0d713?w=600" alt="[Imagem de Fritas com Cheddar e Bacon]"></div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2"><h3 class="text-lg font-bold">Fritas com Cheddar e Bacon</h3><span class="price-tag">R$ 41,90</span></div>
+                        <p class="text-zinc-600 text-sm">Batatas steakhouse acompanhadas de cheddar e bacon.</p>
                     </div>
                 </div>
-
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-56 img-container">
-                        <img id="img-frango-fritas" src="img/frango-fritas.jpg" alt="[Imagem de Frango e Fritas]" onerror="this.src='https://images.unsplash.com/photo-1562967914-6c82c3f8a47c?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Frango e Fritas</h3>
-                            <span class="price-tag shrink-0">R$ 45,90</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm">Tirinhas de frango empanadas acompanhadas de batatas steakhouse.</p>
+                <!-- Frango e Fritas -->
+                <div class="item-card rounded-2xl overflow-hidden">
+                    <div class="img-container"><img src="https://images.unsplash.com/photo-1562967914-608f82629710?w=600" alt="[Imagem de Frango e Fritas]"></div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2"><h3 class="text-lg font-bold">Frango e Fritas</h3><span class="price-tag">R$ 45,90</span></div>
+                        <p class="text-zinc-600 text-sm">Tirinhas de frango empanadas acompanhadas de batatas steakhouse.</p>
                     </div>
                 </div>
-
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-56 img-container">
-                        <img id="img-peixe-fritas" src="img/peixe-fritas.jpg" alt="[Imagem de Peixe e Fritas]" onerror="this.src='https://images.unsplash.com/photo-1579208575657-c595a05383b7?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Peixe e Fritas</h3>
-                            <span class="price-tag shrink-0">R$ 59,90</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm">Tirinhas de tilápia acompanhadas de batatas steakhouse.</p>
+                <!-- Peixe e Fritas -->
+                <div class="item-card rounded-2xl overflow-hidden">
+                    <div class="img-container"><img src="https://images.unsplash.com/photo-1599321955419-78537d3f2703?w=600" alt="[Imagem de Peixe e Fritas]"></div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2"><h3 class="text-lg font-bold">Peixe e Fritas</h3><span class="price-tag">R$ 59,90</span></div>
+                        <p class="text-zinc-600 text-sm">Tirinhas de tilápia acompanhadas de batatas steakhouse.</p>
                     </div>
                 </div>
-
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-56 img-container">
-                        <img id="img-picanha-suina" src="img/picanha-suina.jpg" alt="[Imagem de Picanha Suína]" onerror="this.src='https://images.unsplash.com/photo-1544077960-604201fe74bc?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Picanha Suína</h3>
-                            <span class="price-tag shrink-0">R$ 39,90</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm">Tiras de picanha suína acompanhadas de batatas steakhouse.</p>
+                <!-- Picanha Suína -->
+                <div class="item-card rounded-2xl overflow-hidden">
+                    <div class="img-container"><img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=600" alt="[Imagem de Picanha Suína]"></div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2"><h3 class="text-lg font-bold">Picanha Suína</h3><span class="price-tag">R$ 39,90</span></div>
+                        <p class="text-zinc-600 text-sm">Tiras de picanha suína acompanhadas de batatas steakhouse.</p>
                     </div>
                 </div>
-
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-56 img-container">
-                        <img id="img-coxinha-picante" src="img/coxinha-picante.jpg" alt="[Imagem de Coxinha Picante]" onerror="this.src='https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Coxinha de frango picante com fritas</h3>
-                            <span class="price-tag shrink-0">R$ 40,00</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm">Coxa de franco ao molho picante acompanhadas de batatas steakhouse.</p>
+                <!-- Coxinha Picante -->
+                <div class="item-card rounded-2xl overflow-hidden">
+                    <div class="img-container"><img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600" alt="[Imagem de Coxinha Picante]"></div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2"><h3 class="text-lg font-bold">Coxinha de frango picante com fritas</h3><span class="price-tag">R$ 40,00</span></div>
+                        <p class="text-zinc-600 text-sm">Coxa de frango ao molho picante acompanhadas de batatas steakhouse.</p>
                     </div>
                 </div>
-
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-56 img-container">
-                        <img id="img-contra-file" src="img/contra-file.jpg" alt="[Imagem de Contra Filé]" onerror="this.src='https://images.unsplash.com/photo-1558030006-450675393462?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Contra filé acebolado com Batata</h3>
-                            <span class="price-tag shrink-0">R$ 52,90</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm">400g de um delicioso contra filé acebolado e 300g de Batata steakhouse.</p>
+                <!-- Contra Filé -->
+                <div class="item-card rounded-2xl overflow-hidden">
+                    <div class="img-container"><img src="https://images.unsplash.com/photo-1558030006-450675393462?w=600" alt="[Imagem de Contra Filé]"></div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2"><h3 class="text-lg font-bold">Contra filé acebolado com Batata</h3><span class="price-tag">R$ 52,90</span></div>
+                        <p class="text-zinc-600 text-sm">400g de um delicioso contra filé acebolado e 300g de Batata steakhouse.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Petiscos -->
-        <section id="petiscos">
+        <!-- PETISCOS -->
+        <section id="petiscos" class="scroll-mt-20">
             <div class="text-center mb-10">
-                <h2 class="text-3xl text-amber-500 mb-2">Petiscos Selecionados</h2>
-                <div class="w-16 h-1 bg-amber-500 mx-auto"></div>
+                <h2 class="text-3xl text-black font-bold mb-2">Petiscos</h2>
+                <div class="w-16 h-1 bg-black mx-auto"></div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-56 img-container">
-                        <img id="img-bolinho-costela" src="img/bolinho-costela.jpg" alt="[Imagem de Bolinho de Costela]" onerror="this.src='https://images.unsplash.com/photo-1541529086526-db283c563270?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Bolinho de Costela Bovina</h3>
-                            <span class="price-tag shrink-0">R$ 32,90</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm">Bolinhos de costela bovina, preparados com mandioca. 8 unidades.</p>
+                <!-- Bolinho Costela -->
+                <div class="item-card rounded-2xl overflow-hidden">
+                    <div class="img-container"><img src="https://images.unsplash.com/photo-1541529086526-db283c563270?w=600" alt="[Imagem de Bolinho de Costela]"></div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2"><h3 class="text-lg font-bold">Bolinho de Costela Bovina</h3><span class="price-tag">R$ 32,90</span></div>
+                        <p class="text-zinc-600 text-sm">Bolinhos de costela bovina, preparados com mandioca. 8 unidades (Grande).</p>
                     </div>
                 </div>
-
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-56 img-container">
-                        <img id="img-bolinho-suina" src="img/bolinho-suina.jpg" alt="[Imagem de Bolinho de Suína]" onerror="this.src='https://images.unsplash.com/photo-1626074353765-517a681e40be?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Bolinho de Costelinha Suína Defumada</h3>
-                            <span class="price-tag shrink-0">R$ 33,90</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm">Deliciosos bolinhos preparados com costelinha defumada e desfiada. 8 unidades.</p>
+                <!-- Bolinho Suína -->
+                <div class="item-card rounded-2xl overflow-hidden">
+                    <div class="img-container"><img src="https://images.unsplash.com/photo-1602192103300-47e66756152e?w=600" alt="[Imagem de Bolinho Suína]"></div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2"><h3 class="text-lg font-bold">Bolinho de Costelinha Suína Defumada</h3><span class="price-tag">R$ 33,90</span></div>
+                        <p class="text-zinc-600 text-sm">Deliciosos bolinhos preparados com costelinha defumada e desfiada. 8 unidades (Grande).</p>
                     </div>
                 </div>
-
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-56 img-container">
-                        <img id="img-bolinho-joelho" src="img/bolinho-joelho.jpg" alt="[Imagem de Bolinho de Joelho]" onerror="this.src='https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Bolinho de Joelho de Porco</h3>
-                            <span class="price-tag shrink-0">R$ 33,90</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm">Deliciosos bolinhos com recheio de joelho de porco. 8 unidades.</p>
+                <!-- Bolinho Joelho -->
+                <div class="item-card rounded-2xl overflow-hidden">
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2"><h3 class="text-lg font-bold">Bolinho de joelho de porco</h3><span class="price-tag">R$ 33,90</span></div>
+                        <p class="text-zinc-600 text-sm">Deliciosos bolinhos com recheio de joelho de porco. 8 unidades.</p>
                     </div>
                 </div>
-
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-56 img-container">
-                        <img id="img-pastel-angu" src="img/pastel-angu.jpg" alt="[Imagem de Pastel de Angu]" onerror="this.src='https://images.unsplash.com/photo-1626074353765-517a681e40be?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Pastel de Angu com Pernil</h3>
-                            <span class="price-tag shrink-0">R$ 33,90</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm">Delicioso pastel de angu caseiro com recheio de pernil e requeijão de corte. 6 unidades.</p>
+                <!-- Pastel Angu -->
+                <div class="item-card rounded-2xl overflow-hidden">
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2"><h3 class="text-lg font-bold">Pastel de angu com pernil e requeijão</h3><span class="price-tag">R$ 33,90</span></div>
+                        <p class="text-zinc-600 text-sm">Delicioso pastel de angu caseiro com recheio de pernil. 6 unidades.</p>
                     </div>
                 </div>
-
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-56 img-container">
-                        <img id="img-bolinho-vaca" src="img/bolinho-vaca-atolada.jpg" alt="[Imagem de Bolinho de Vaca Atolada]" onerror="this.src='https://images.unsplash.com/photo-1541529086526-db283c563270?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Bolinho de Vaca Atolada</h3>
-                            <span class="price-tag shrink-0">R$ 33,90</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm">Delicioso bolinho de vaca atolada. 8 unidades.</p>
+                <!-- Bolinho Vaca Atolada -->
+                <div class="item-card rounded-2xl overflow-hidden">
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2"><h3 class="text-lg font-bold">Bolinho de Vaca Atolada</h3><span class="price-tag">R$ 33,90</span></div>
+                        <p class="text-zinc-600 text-sm">Delicioso bolinho de vaca atolada. 8 Unidades.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Bebidas -->
-        <section id="bebidas">
+        <!-- BEBIDAS -->
+        <section id="bebidas" class="scroll-mt-20">
             <div class="text-center mb-10">
-                <h2 class="text-3xl text-amber-500 mb-2">Bebidas</h2>
-                <div class="w-16 h-1 bg-amber-500 mx-auto"></div>
+                <h2 class="text-3xl text-black font-bold mb-2">Bebidas</h2>
+                <div class="w-16 h-1 bg-black mx-auto"></div>
             </div>
-            
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Água Mineral -->
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-48 img-container">
-                        <img id="img-agua" src="img/agua.jpg" alt="[Imagem de Água Mineral]" onerror="this.src='https://images.unsplash.com/photo-1548839140-29a749e1abc5?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Água Mineral</h3>
-                            <span class="price-tag shrink-0">R$ 4,00</span>
-                        </div>
-                    </div>
+                <!-- Água -->
+                <div class="item-card rounded-2xl overflow-hidden p-5">
+                    <div class="flex justify-between items-center"><h3 class="font-bold">Água Mineral</h3><span class="price-tag">R$ 4,00</span></div>
                 </div>
-
-                <!-- Água Mineral com Gás -->
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-48 img-container">
-                        <img id="img-agua-gas" src="img/agua-gas.jpg" alt="[Imagem de Água com Gás]" onerror="this.src='https://images.unsplash.com/photo-1559839914-17aae19cea9e?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Água Mineral com Gás</h3>
-                            <span class="price-tag shrink-0">R$ 4,50</span>
-                        </div>
-                    </div>
+                <!-- Água Gás -->
+                <div class="item-card rounded-2xl overflow-hidden p-5">
+                    <div class="flex justify-between items-center"><h3 class="font-bold">Água Mineral com Gás</h3><span class="price-tag">R$ 4,50</span></div>
                 </div>
-
                 <!-- Refrigerante -->
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-48 img-container">
-                        <img id="img-refrigerante" src="img/refrigerantes.jpg" alt="[Imagem de Refrigerantes]" onerror="this.src='https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Refrigerante</h3>
-                            <span class="price-tag shrink-0">R$ 7,00</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm">Coca Cola, Coca Cola Zero e Guaraná Antártica.</p>
-                    </div>
+                <div class="item-card rounded-2xl overflow-hidden p-5">
+                    <div class="flex justify-between items-start mb-2"><h3 class="font-bold">Refrigerante</h3><span class="price-tag">R$ 7,00</span></div>
+                    <p class="text-zinc-500 text-xs">Coca Cola, Coca Cola Zero e Guaraná Antártica</p>
                 </div>
-
                 <!-- Red Bull -->
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-48 img-container">
-                        <img id="img-redbull" src="img/redbull.jpg" alt="[Imagem de Red Bull]" onerror="this.src='https://images.unsplash.com/photo-1622543925917-763c34d15384?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Red Bull</h3>
-                            <span class="price-tag shrink-0">R$ 16,00</span>
-                        </div>
-                    </div>
+                <div class="item-card rounded-2xl overflow-hidden p-5">
+                    <div class="flex justify-between items-center"><h3 class="font-bold">Red Bull</h3><span class="price-tag">R$ 16,00</span></div>
                 </div>
-
                 <!-- Heineken 0 -->
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-48 img-container">
-                        <img id="img-heineken0" src="img/heineken0.jpg" alt="[Imagem de Heineken Sem Álcool]" onerror="this.src='https://images.unsplash.com/photo-1618885472119-4402688755b6?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Heineken 0 Álcool</h3>
-                            <span class="price-tag shrink-0">R$ 12,00</span>
-                        </div>
-                    </div>
+                <div class="item-card rounded-2xl overflow-hidden p-5">
+                    <div class="flex justify-between items-center"><h3 class="font-bold">Heineken 0 Alcool</h3><span class="price-tag">R$ 12,00</span></div>
                 </div>
             </div>
         </section>
 
-        <!-- Sortidos -->
-        <section id="sortidos" class="pb-10">
+        <!-- SORTIDOS -->
+        <section id="sortidos" class="scroll-mt-20">
             <div class="text-center mb-10">
-                <h2 class="text-3xl text-amber-500 mb-2">Sortidos</h2>
-                <div class="w-16 h-1 bg-amber-500 mx-auto"></div>
+                <h2 class="text-3xl text-black font-bold mb-2">Sortidos</h2>
+                <div class="w-16 h-1 bg-black mx-auto"></div>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Trident -->
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-48 img-container">
-                        <img id="img-trident" src="img/trident.jpg" alt="[Imagem de Chiclete Trident]" onerror="this.src='https://images.unsplash.com/photo-1582131503261-fca1d1c058d2?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Trident</h3>
-                            <span class="price-tag shrink-0">R$ 4,50</span>
-                        </div>
-                    </div>
+                <div class="item-card rounded-2xl overflow-hidden p-5">
+                    <div class="flex justify-between items-center"><h3 class="font-bold">Trident</h3><span class="price-tag">R$ 4,50</span></div>
                 </div>
-
                 <!-- Cigarro de Palha -->
-                <div class="item-card rounded-2xl border border-zinc-800 overflow-hidden flex flex-col">
-                    <div class="h-48 img-container">
-                        <img id="img-cigarro" src="img/cigarro-palha.jpg" alt="[Imagem de Cigarro de Palha]" onerror="this.src='https://images.unsplash.com/photo-1510137600163-2729bc6959a6?w=600'">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start gap-3 mb-2">
-                            <h3 class="text-xl text-white font-bold">Cigarro de Palha</h3>
-                            <span class="price-tag shrink-0">R$ 1,50</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm italic">Unidade</p>
-                    </div>
+                <div class="item-card rounded-2xl overflow-hidden p-5">
+                    <div class="flex justify-between items-start"><h3 class="font-bold">Cigarro de Palha</h3><span class="price-tag">R$ 1,50</span></div>
+                    <p class="text-zinc-500 text-xs mt-1">Unidade</p>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <footer class="mt-10 py-12 bg-black text-center border-t border-zinc-900">
-        <h4 class="text-amber-500 font-oswald text-xl mb-1">Huno's Bier</h4>
-        <p class="text-zinc-500 text-xs mb-8">Artesanal de Verdade</p>
-        <div class="flex justify-center gap-6">
-            <a href="#" class="text-zinc-600 hover:text-amber-500 transition">Instagram</a>
-            <a href="#" class="text-zinc-600 hover:text-amber-500 transition">WhatsApp</a>
+    <!-- Footer -->
+    <footer class="mt-20 py-12 bg-amber-500 text-center border-t border-black/10">
+        <h4 class="text-black font-black text-2xl mb-1">Huno's Bier</h4>
+        <p class="text-black/60 text-xs mb-8 uppercase tracking-widest">Artesanal de Verdade</p>
+        <div class="flex justify-center">
+            <a href="https://www.instagram.com/hunosbier/" target="_blank" class="text-black hover:opacity-70 transition flex items-center gap-2 font-bold">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                @hunosbier
+            </a>
         </div>
     </footer>
 
     <script>
-        // CONFIGURAÇÃO DE IMAGENS PERSONALIZÁVEIS
-        const IMAGES_CONFIG = {
-            // Burgers
-            "cheese": "img/cheese.jpg",
-            "gorgonzola": "img/gorgonzola-style.jpg",
-            "mr-ovo": "img/mr-ovo.jpg",
-            "original": "img/original.jpg",
-            "duplo-smash": "img/duplo-smash.jpg",
-            "patty-melt": "img/patty-melt.jpg",
-            "prensadinho": "img/prensadinho.jpg",
-            // Porções
-            "fritas": "img/fritas.jpg",
-            "fritas-cheddar": "img/fritas-cheddar-bacon.jpg",
-            "frango-fritas": "img/frango-fritas.jpg",
-            "peixe-fritas": "img/peixe-fritas.jpg",
-            "picanha-suina": "img/picanha-suina.jpg",
-            "coxinha-picante": "img/coxinha-picante.jpg",
-            "contra-file": "img/contra-file.jpg",
-            // Petiscos
-            "bolinho-costela": "img/bolinho-costela.jpg",
-            "bolinho-suina": "img/bolinho-suina.jpg",
-            "bolinho-joelho": "img/bolinho-joelho.jpg",
-            "pastel-angu": "img/pastel-angu.jpg",
-            "bolinho-vaca": "img/bolinho-vaca-atolada.jpg",
-            // Bebidas
-            "agua": "img/agua.jpg",
-            "agua-gas": "img/agua-gas.jpg",
-            "refrigerante": "img/refrigerantes.jpg",
-            "redbull": "img/redbull.jpg",
-            "heineken0": "img/heineken0.jpg",
-            // Sortidos
-            "trident": "img/trident.jpg",
-            "cigarro": "img/cigarro-palha.jpg"
-        };
-
-        // Aplica as imagens da configuração aos elementos
-        Object.keys(IMAGES_CONFIG).forEach(id => {
-            const el = document.getElementById(`img-${id}`);
-            if(el) el.src = IMAGES_CONFIG[id];
-        });
-
-        // Scroll Spy para atualizar menu ativo
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('section[id]');
             const navLinks = document.querySelectorAll('.category-link');
             let current = "";
             sections.forEach(section => {
-                if (window.pageYOffset >= section.offsetTop - 150) current = section.getAttribute('id');
+                const sectionTop = section.offsetTop;
+                // Ajustado o offset para compensar apenas a barra de navegação menor
+                if (window.pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
             });
             navLinks.forEach(link => {
-                const isActive = link.getAttribute('href') === `#${current}`;
-                link.classList.toggle('active', isActive);
-                link.classList.toggle('text-amber-500', isActive);
-                if (!isActive) link.classList.add('text-zinc-400');
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
             });
         });
     </script>
