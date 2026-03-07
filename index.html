@@ -49,6 +49,14 @@
             object-fit: cover;
             background-color: #222;
         }
+
+        .karaoke-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .karaoke-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.2);
+        }
     </style>
 </head>
 <body class="pb-12">
@@ -70,6 +78,26 @@
         </div>
     </section>
 
+    <!-- Karaoke Links -->
+    <section class="container mx-auto px-4 py-8 max-w-2xl">
+        <div class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-3xl text-center">
+            <div class="flex items-center justify-center gap-2 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                </svg>
+                <h3 class="text-lg font-bold text-white uppercase tracking-wider">Karaokê</h3>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <a href="https://drive.google.com/file/d/1I5l0g8q0B4vgmbmiBWENOc16Z1mNCHrQ/view" target="_blank" class="karaoke-btn flex items-center justify-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-4 px-6 rounded-2xl border border-zinc-700 hover:border-amber-500 transition">
+                    <span>NACIONAIS</span>
+                </a>
+                <a href="https://drive.google.com/file/d/1jJpCYNP5XWBrI4BKcd-f6zHJYlDcSUtD/view" target="_blank" class="karaoke-btn flex items-center justify-center bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-4 px-6 rounded-2xl border border-zinc-700 hover:border-amber-500 transition">
+                    <span>INTERNACIONAIS</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Navegação -->
     <nav class="bg-zinc-900 overflow-x-auto no-scrollbar sticky top-[73px] z-40 border-b border-zinc-800 shadow-xl">
         <div class="container mx-auto px-4 flex justify-center gap-6 py-4 min-w-max">
@@ -81,7 +109,7 @@
         </div>
     </nav>
 
-    <main class="container mx-auto px-4 mt-10 space-y-16 max-w-6xl">
+    <main class="container mx-auto px-4 mt-6 space-y-16 max-w-6xl">
 
         <!-- Burgers -->
         <section id="burgers">
